@@ -15,7 +15,6 @@ function App() {
 return (
   <div className="container">
     <h1>Random Quote</h1>
-
     {posts.map(post => (
       <p className="quote" key={post.id}>
         "{post.quote}"
