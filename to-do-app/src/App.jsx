@@ -36,10 +36,10 @@ function App() {
     <div className="div0">
       <nav className="navbar navbar-dark bg-dark">
         <div className="div1">
-          <a className="navbar-brand">Todo App</a>
+          <h1 className="navbar h1navbar-brand text-white">Todo App 📃</h1>
         </div>
       </nav>
-
+ 
       <div className="div2">
         <div className="div3">
           <input
@@ -81,7 +81,7 @@ function App() {
         {completedTasks.length === 0 ? (
           <p>No tasks completed yet</p>
         ) : (
-          <ul className="div4">
+          <ul className="div6">
             {completedTasks.map((item) => (
               <li key={item.id} className="div5">
                 <span className="text-decoration-line-through">
