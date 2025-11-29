@@ -22,7 +22,7 @@ function App() {
   }
 }
 
-  function markDone(id) {
+  function Done(id) {
     const doneTask = tasks.find((item) => item.id === id);
     if (!doneTask) return;
 
@@ -60,7 +60,7 @@ function App() {
               <div>
                 <button
                   className="btn btn-success btn-sm me-2"
-                  onClick={() => markDone(item.id)}
+                  onClick={() => Done(item.id)}
                 >
                   Done
                 </button>
