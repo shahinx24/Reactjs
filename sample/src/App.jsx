@@ -1,23 +1,24 @@
-import {useState} from "react";
+import { useReducer } from "react";
 
-function App(){
-        const [task,setTask] = useState([])
-        const [name , setName] = useState("");
-        const [age , setAge] = useState("");
-
-        function Pop(){
-          setTask([name,age])
-        }
-        
-        return(
-          <div>
-            <p>Enter your Name :</p>
-          <input value={name} onChange={(t)=> setName(t.target.value)}/>
-          <p>Enter your age :</p>
-          <input value={age} onChange={(t)=> setAge(t.target.value)}/>
-          <button onClick={Pop}>Click</button>
-          <p>{task}</p>
-          </div>
-        );
+function reducer(state, action) {
+  switch (action.type) {
+    case "INC":
+      return state + 1;
+    case "DEC":
+      return state - 1;
+    default:
+      return state;
+  }
 }
-export default App;
+
+export default function App() {
+  const [count, dispatch] = useReducer(reducer, 0);
+
+  return (
+    <>
+      <p>Count: {count}</p>
+      <button onClick={() => dispatch({ type: "INC" })}>+</button>
+      <button onClick={() => dispatch({ type: "DEC" })}>-</button>
+    </>
+  );
+}
