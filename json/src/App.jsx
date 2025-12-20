@@ -7,12 +7,6 @@ function App() {
   const [error,setError] = useState("")
   const [users,setusers] = useState([])
 
-useEffect(() => {
-  fetch("http://localhost:3000/users")
-    .then(res => res.json())
-    .then(data => setusers(data));
-}, []);
-
   useEffect(()=>{
       if (email === "" && username === "") {
         setError("");
@@ -44,6 +38,12 @@ useEffect(() => {
         setEmail("");
       });
     }
+
+    useEffect(() => {
+      fetch("http://localhost:3000/users")
+        .then(res => res.json())
+        .then(data => setusers(data));
+    }, []);
   
   return (
     <>
