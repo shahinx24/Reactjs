@@ -1,11 +1,12 @@
 import { useState,useEffect } from 'react'
 import './App.css'
+import axios from "axios";
 
 function App() {
   const [email,setEmail] = useState("")
   const [username,setUsername] = useState("")
   const [error,setError] = useState("")
-  const [users,setusers] = useState([])
+  const [users,setUsers] = useState([])
 
   useEffect(()=>{
       if (email === "" && username === "") {
@@ -20,31 +21,29 @@ function App() {
       }
   },[username,email])
 
-  function handler(){
-    if (error) return;
-      const newUser = { username, email };
-      console.log("Button clicked", error);
-
-    // Save to JSON Server
-    fetch("http://localhost:3000/users", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newUser)
-    })
-      .then(res => res.json())
-      .then(data => {
-        setusers(prev => [...prev, data]);
-        setUsername("");
-        setEmail("");
-      });
-    }
-
+async function handler() {
+  if (error) return;
+  const newUser = {username,email};
+  try {
+    const res = await axios.post(
+      "http://localhost:5000/users",
+      newUser
+    );
+    setUsers((prev) => [...prev, res.data]);
+    setUsername("");
+    setEmail("");
+  } catch (error) {
+    console.error(error);
+  }
+}
+    
     useEffect(() => {
-      fetch("http://localhost:3000/users")
-        .then(res => res.json())
-        .then(data => setusers(data));
-    }, []);
-  
+    axios.get("http://localhost:5000/users")
+      .then((res) => {
+        setUsers(res.data);
+      })
+  }, []);
+
   return (
     <>
     <input value={username}
