@@ -36,15 +36,15 @@ async function handler() {
     console.error(error);
   }
 }
-    
-    useEffect(() => {
+
+useEffect(() => {
     axios.get("http://localhost:5000/users")
       .then((res) => {
         setUsers(res.data);
       })
   }, []);
 
-  return (
+return (
     <>
     <input value={username}
       placeholder='enter your username'
