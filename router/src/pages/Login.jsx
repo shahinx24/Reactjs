@@ -5,7 +5,7 @@ export default function Login() {
 
   function handleLogin(e) {
     e.preventDefault();
-    navigate("/home"); // redirect to home
+    navigate("/home");
   }
 
   return (

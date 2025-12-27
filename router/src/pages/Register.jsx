@@ -5,7 +5,7 @@ export default function Register() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    navigate("/login"); // redirect to login
+    navigate("/login");
   }
 
   return (
